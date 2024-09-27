@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Práctica de Saludos y Presentaciones en Inglés</title>
+    <style>
+        body {
+            background-color: #add8e6; /* Fondo azul */
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            margin: 0;
+        }
+        #app {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            display: inline-block;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            max-width: 100%;
+            width: 600px;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        #phrase {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 1em;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            margin: 5px;
+            cursor: pointer;
+        }
+        #feedback {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+        .correct {
+            color: green;
+        }
+        .incorrect {
+            color: red;
+        }
+        #pronunciation {
+            font-size: 1.2em;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <h1>Práctica de Saludos y Presentaciones</h1>
+    <div id="instructions">
+        Escribe la traducción correcta y escucha la pronunciación:
+    </div>
+    <div id="phrase"></div>
+    <input type="text" id="answer" placeholder="Escribe la traducción aquí" autocomplete="off">
+    <button id="submit-btn">Comprobar</button>
+    <div id="feedback"></div>
+    <div id="pronunciation"></div>
+    <button id="next-btn" style="display:none;">Siguiente</button>
+</div>
+
+<script>
+    const phrases = [
+        { english: 'Hello', spanish: 'Hola', pronunciation: 'həˈloʊ' },
+        { english: 'Good morning', spanish: 'Buenos días', pronunciation: 'ɡʊd ˈmɔːrnɪŋ' },
+        { english: 'How are you?', spanish: '¿Cómo estás?', pronunciation: 'haʊ ɑr juː?' },
+        { english: 'Nice to meet you', spanish: 'Mucho gusto', pronunciation: 'naɪs tuː miːt juː' },
+        { english: 'What is your name?', spanish: '¿Cómo te llamas?', pronunciation: 'wɒt ɪz jɔːr neɪm?' },
+        { english: 'My name is...', spanish: 'Me llamo...', pronunciation: 'maɪ neɪm ɪz...' },
+        { english: 'Goodbye', spanish: 'Adiós', pronunciation: 'ɡʊdˈbaɪ' },
+        { english: 'See you later', spanish: 'Hasta luego', pronunciation: 'siː juː ˈleɪtər' }
+    ];
+
+    let currentIndex = 0;
+
+    const phraseElement = document.getElementById('phrase');
+    const answerInput = document.getElementById('answer');
+    const feedbackElement = document.getElementById('feedback');
+    const pronunciationElement = document.getElementById('pronunciation');
+    const submitButton = document.getElementById('submit-btn');
+    const nextButton = document.getElementById('next-btn');
+
+    function startPractice() {
+        currentIndex = 0;
+        showNextPhrase();
+    }
+
+    function showNextPhrase() {
+        if (currentIndex < phrases.length) {
+            const currentPhrase = phrases[currentIndex];
+            phraseElement.innerText = currentPhrase.english;
+            answerInput.value = '';
+            feedbackElement.innerText = '';
+            pronunciationElement.innerText = '';
+            nextButton.style.display = 'none';
+            answerInput.disabled = false;
+        }
+    }
+
+    function checkAnswer() {
+        const userAnswer = answerInput.value.trim().toLowerCase();
+        const correctAnswer = phrases[currentIndex].spanish.toLowerCase();
+
+        if (userAnswer === correctAnswer) {
+            feedbackElement.innerHTML = '<span class="correct">¡Correcto!</span>';
+        } else {
+            feedbackElement.innerHTML = `<span class="incorrect">Incorrecto. La respuesta correcta era "${phrases[currentIndex].spanish}".</span>`;
+        }
+
+        pronunciationElement.innerHTML = `Pronunciación: <em>${phrases[currentIndex].pronunciation}</em>`;
+        answerInput.disabled = true;
+        nextButton.style.display = 'inline-block';
+        currentIndex++;
+    }
+
+    submitButton.addEventListener('click', checkAnswer);
+    nextButton.addEventListener('click', showNextPhrase);
+
+    // Iniciar la práctica
+    startPractice();
+</script>
+
+</body>
+</html>
