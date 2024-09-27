@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    .session {
+      /* Esta es la clase que tienen las sesiones */
+      /* Les damos un ancho del 100% del contenedor y un alto del 80% */
+      width: 100%;
+      height: %;
+      /* Les damos un borde gris para verlas mejor */
+      border: 1px solid gray;
+      /* Les damos un relleno de 5px para separar los elementos del borde */
+      padding: 3px;
+      /* Las ocultamos por defecto, excepto la primera */
+      display: none;
+    }
+    .session:first-child {
+      /* Esta es la regla para mostrar la primera sesión */
+      display: block;
+    }
+    audio {
+      /* Este es el estilo para los elementos de audio */
+      /* Les damos un ancho del 100% del contenedor */
+      width: 100%;
+    }
+    p {
+      /* Este es el estilo para los elementos de párrafo */
+      /* Les damos un color azul para que se vean mejor */
+      color: rgb(245, 245, 250);
+    }
+    input {
+      /* Este es el estilo para los elementos de input */
+      /* Les damos un ancho del 80% del contenedor y un alto de 20px */
+      width: 102%;
+      height: 50px;
+    }
+    button {
+      /* Este es el estilo para los elementos de botón */
+      /* Les damos un ancho del 15% del contenedor y un alto de 25px */
+      width: 102%;
+      height: 50px;
+      /* Les cambiamos el color de fondo a verde claro */
+      background-color: lightgreen;
+      /* Les cambiamos el color del texto a blanco */
+      color: white;
+    }body {
+      font-family: "Comic Sans MS", cursive, sans-serif;
+      background-color: #01101d;
+      background-image: url("figuritas.png");
+    }
+  </style>
+  <script>
+    // Este es el script en JavaScript que controla la lógica del botón y las sesiones
+    // Declaramos una variable para guardar el índice de la sesión actual
+    var index = 0;
+    // Declaramos una función que se ejecuta cuando se carga la página
+    function iniciar() {
+      // Obtenemos todos los elementos con la clase session
+      var sessions = document.getElementsByClassName("session");
+      // Obtenemos el elemento button por su id
+      var button = document.getElementById("next");
+      // Le asignamos un evento que se dispara cuando se hace clic en el botón
+      button.onclick = function() {
+        // Incrementamos el índice en uno
+        index++;
+        // Si el índice es mayor o igual al número de sesiones, lo reiniciamos a cero
+        if (index >= sessions.length) {
+          index = 0;
+        }
+        // Recorremos todas las sesiones
+        for (var i = 0; i < sessions.length; i++) {
+          // Si el índice coincide con el de la sesión, la mostramos
+          if (i == index) {
+            sessions[i].style.display = "block";
+            // Obtenemos el elemento de audio dentro de la sesión y lo reproducimos
+            var audio = sessions[i].getElementsByTagName("audio")[0];
+            audio.play();
+          } else {
+            // Si no, la ocultamos
+            sessions[i].style.display = "none";
+          }
+        }
+      };
+    }
+  </script>
+</head>
+<body onload="iniciar()">
+  <!-- Este es el contenedor principal -->
+  <div id="container">
+    <!-- Estas son las sesiones, cada una con un audio, un párrafo, un input y un texto -->
+    <div class="session">
+      <audio src="http://ateneo-polyglot.wuaze.com/dir/wp-content/uploads/2024/04/Hello-Realizzato-con-Clipchamp.mp3" controls ></audio>
+      <p>Hello: hola</p>
+      <input type="text" placeholder="Escribe aquí tu respuesta">
+    </div>
+    <div class="session">
+        <audio src="https://sapereaude-idiomas.000webhostapp.com/Saludos%20y%20presentaciones%20audios/prj_7893357_618e77909d62d913caefc32a939864d2_1696260537.mp3" controls ></audio>
+        <p>Hi: hola</p>
+        <input type="text" placeholder="Escribe aquí tu respuesta">
+      </div>
+    <div class="session">
+        <audio src="https://sapereaude-idiomas.000webhostapp.com/Saludos%20y%20presentaciones%20audios/prj_7889968_f8ca41a1ce1069c63490962cad3f1263_1696256577.mp3" controls ></audio>
+        <p>Good morning: buenos días</p>
+        <input type="text" placeholder="Escribe aquí tu respuesta">
+      </div>
+    <div class="session">
+      <audio src="https://sapereaude-idiomas.000webhostapp.com/Saludos%20y%20presentaciones%20audios/prj_7890538_f8ca41a1ce1069c63490962cad3f1263_1696257203.mp3" controls></audio>
+      <p> Good afternoon: buenas tardes</p>
+      <input type="text" placeholder="Escribe aquí tu respuesta">
+    </div>
+    <div class="session">
+      <audio src="https://sapereaude-idiomas.000webhostapp.com/Saludos%20y%20presentaciones%20audios/prj_7891588_f8ca41a1ce1069c63490962cad3f1263_1696258325.mp3" controls></audio>
+      <p>Good evening: buenas noches</p>
+      <input type="text" placeholder="Escribe aquí tu respuesta">
+    </div>
+    <div class="session">
+      <audio src="https://sapereaude-idiomas.000webhostapp.com/Saludos%20y%20presentaciones%20audios/prj_7891840_f8ca41a1ce1069c63490962cad3f1263_1696258639.mp3" controls></audio>
+      <p>Good night: buenas noches</p>
+      <input type="text" placeholder="Escribe aquí tu respuesta">
+    </div>
+    <div class="session">
+      <audio src="https://sapereaude-idiomas.000webhostapp.com/Saludos%20y%20presentaciones%20audios/prj_7897818_f8ca41a1ce1069c63490962cad3f1263_1696265798%20(1).mp3" controls></audio>
+      <p>How are you?: ¿Cómo estás?</p>
+      <input type="text" placeholder="Escribe aquí tu respuesta">
+    </div>
+    <div class="session">
+        <audio src="https://sapereaude-idiomas.000webhostapp.com/Saludos%20y%20presentaciones%20audios/prj_7897904_f8ca41a1ce1069c63490962cad3f1263_1696265895.mp3" controls></audio>
+        <p>How are you doing?: ¿Cómo te va?</p>
+        <input type="text" placeholder="Escribe aquí tu respuesta">
+      </div>
+      <div class="session">
+        <audio src="https://sapereaude-idiomas.000webhostapp.com/Saludos%20y%20presentaciones%20audios/prj_7898377_f8ca41a1ce1069c63490962cad3f1263_1696266358.mp3" controls></audio>
+        <p>How is it going?: ¿Qué tal?</p>
+        <input type="text" placeholder="Escribe aquí tu respuesta">
+      </div>
+      <div class="session">
+        <audio src="https://sapereaude-idiomas.000webhostapp.com/Saludos%20y%20presentaciones%20audios/prj_7898509_f8ca41a1ce1069c63490962cad3f1263_1696266496.mp3" controls></audio>
+        <p>What’s up?: ¿Qué pasa?</p>
+        <input type="text" placeholder="Escribe aquí tu respuesta">
+      </div>
+      <div class="session">
+        <audio src="https://sapereaude-idiomas.000webhostapp.com/Saludos%20y%20presentaciones%20audios/prj_7898609_f8ca41a1ce1069c63490962cad3f1263_1696266619.mp3" controls></audio>
+        <p>I’m fine, thanks. And you?</p>
+        <p>Estoy bien, gracias. ¿Y tú?</p>
+        <input type="text" placeholder="Escribe aquí tu respuesta">
+      </div>
+      <div class="session">
+        <audio src="https://sapereaude-idiomas.000webhostapp.com/Saludos%20y%20presentaciones%20audios/prj_7876520_f8ca41a1ce1069c63490962cad3f1263_1696234229.mp3" controls></audio>
+        <p>Nice to meet you: Mucho gusto.</p>
+        <input type="text" placeholder="Escribe aquí tu respuesta">
+      </div>
+      <div class="session">
+        <audio src="https://sapereaude-idiomas.000webhostapp.com/Saludos%20y%20presentaciones%20audios/prj_7891840_f8ca41a1ce1069c63490962cad3f1263_1696258639.mp3" controls></audio>
+        <p>Pleased to meet you: Encantado de conocerte.</p>
+        <input type="text" placeholder="Escribe aquí tu respuesta">
+      </div>
+    <!-- Este es el botón para pasar a la siguiente sesión -->
+    <button id="next">Siguiente</button>
+  </div>
+</body>
+</html>
